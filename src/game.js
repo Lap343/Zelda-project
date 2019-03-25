@@ -43,7 +43,6 @@ export default class Game {
     };
     draw(ctx) {
         this.gameObjects.forEach(objects => objects.draw(ctx));
-        
         if (this.gamestate === GAMESTATE.PAUSED) {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
             ctx.fillStyle = "rgba(0,0,0,0.5)";
@@ -62,7 +61,7 @@ export default class Game {
             ctx.font = "30px Arial";
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
-            ctx.fillText("Press Spacebar to Start", this.gameWidth / 2, this.gameHeight / 2);
+            ctx.fillText("Press Spacebar/Start to Start", this.gameWidth / 2, this.gameHeight / 2);
         };
         if (this.gamestate === GAMESTATE.GAMEOVER) {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
@@ -76,10 +75,12 @@ export default class Game {
         };
     };
     togglePause() {         
-        if (this.gamestate == GAMESTATE.PAUSED) {
-            this.gamestate = GAMESTATE.RUNNING;
-        } else {
-            this.gamestate = GAMESTATE.PAUSED;
+        if (this.gamestate !== GAMESTATE.MENU) {
+            if (this.gamestate == GAMESTATE.PAUSED) {
+                this.gamestate = GAMESTATE.RUNNING;
+            } else {
+                this.gamestate = GAMESTATE.PAUSED;
+            };
         };
     };
 };
