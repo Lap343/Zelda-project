@@ -27,7 +27,8 @@ export default class InputHandler {
                     game.start();
                     break;
             };
-        });document.addEventListener('keyup', event =>{
+        });
+        document.addEventListener('keyup', event =>{
             switch (event.keyCode) {
                 //left//
                 case 37: 
@@ -47,5 +48,50 @@ export default class InputHandler {
                     break;
             };
         });
+        document.getElementById('upButton').onmousedown = function() {
+            mainPlayer.lookUp();
+            console.log('wut');
+        }; 
+        document.getElementById('leftButton').onmousedown = function() {
+            mainPlayer.lookLeft();
+        };
+        document.getElementById('rightButton').onmousedown = function() {
+            mainPlayer.lookRight();
+        };
+        document.getElementById('downButton').onmousedown = function() {
+            mainPlayer.lookDown();
+        };
+        document.getElementById('selectButton').onmousedown = function() {
+            game.togglePause();
+        };
+        document.getElementById('startButton').onmousedown = function() {
+            game.start();
+        };
+        document.getElementById('aButton').onmousedown = function() {
+
+        };
+        document.getElementById('bButton').onmousedown = function() {
+
+        };
+
+        document.getElementById('upButton').onmouseup = function() {
+            mainPlayer.stopY();
+        }; 
+
+        document.getElementById('leftButton').onmouseup = function() {
+            mainPlayer.stopX();
+        };
+        document.getElementById('rightButton').onmouseup = function() {
+            mainPlayer.stopX();
+        };
+        document.getElementById('downButton').onmouseup = function() {
+            mainPlayer.stopY();
+        };
+        document.getElementById('aButton').onmouseup = function() {
+
+        };
+        document.getElementById('bButton').onmouseup = function() {
+
+        };
     }; 
 };
