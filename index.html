@@ -20,6 +20,31 @@
             margin-top: 45px;
             background-color: #fff;
         }
+        button {
+            background-color: grey;
+            padding: 15px;
+        }
+        #controller {
+            margin-left: 25vw;
+        }
+        #upButton {
+            margin-left: 5vw;
+        }
+        #rightButton {
+            margin-left: 5vw;
+        }
+        #downButton {
+            margin-left: 5vw;
+        }
+        #startButton {
+            margin-left: 5vw;
+        }
+        #aButton {
+            margin-left: 15vw;
+        }
+        #bButton {
+            margin-left: 25vw;
+        }
     </style>
     <h1 style="color: red; font-size: 40px;">Legend of Zelda: Ganon's end?</h1>
 
@@ -28,6 +53,27 @@
     
     <!-- The Brains behind it all -->
     <script type="module" src="src/index.js"></script>
+
+    <br>
+
+    <div id="controller">
+        <div id="grid">
+            <button id="upButton">/\</button>
+            <button id="bButton">B</button>
+        </div>
+            <br>
+        <div id="grid2">
+            <button id="leftButton">&lt;</button>
+            <button id="rightButton">&gt;</button>
+            <button id="aButton">A</button>
+        </div>
+            <br>
+        <div id="grid3">
+            <button id="downButton">\/</button>
+            <button id="startButton">Start</button>
+            <button id="selectButton">Select</button>
+        </div>
+    </div>
     
 </body>
 </html>
