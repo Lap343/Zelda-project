@@ -2,7 +2,7 @@
 import Lunk from './player.js';
 //Importing Input//
 import InputHandler from './input.js';
-//Importing Enemies//
+//Importing Enemies///
 import Enemy from './enemy.js'
 
 const GAMESTATE = {
