@@ -17,33 +17,39 @@
             border: 1px solid black;
             display: block;
             margin: auto;
-            margin-top: 45px;
             background-color: #fff;
         }
         button {
-            background-color: grey;
-            padding: 15px;
+            display: none;
         }
-        #controller {
-            margin-left: 25vw;
-        }
-        #upButton {
-            margin-left: 5vw;
-        }
-        #rightButton {
-            margin-left: 5vw;
-        }
-        #downButton {
-            margin-left: 5vw;
-        }
-        #startButton {
-            margin-left: 5vw;
-        }
-        #aButton {
-            margin-left: 15vw;
-        }
-        #bButton {
-            margin-left: 25vw;
+        @media only screen and (max-width: 600px) {
+            /* lul fix the controller */
+            button {
+                display: none; /* switch to block when fixed*/
+                background-color: grey;
+                padding: 15px;
+            }
+            #controller {
+                margin-left: 25vw;
+            }
+            #upButton {
+                margin-left: 5vw;
+            }
+            #rightButton {
+                margin-left: 5vw;
+            }
+            #downButton {
+                margin-left: 5vw;
+            }
+            #startButton {
+                margin-left: 5vw;
+            }
+            #aButton {
+                margin-left: 15vw;
+            }
+            #bButton {
+                margin-left: 25vw;
+            }
         }
     </style>
     <h1 style="color: red; font-size: 40px;">Legend of Zelda: Ganon's end?</h1>
