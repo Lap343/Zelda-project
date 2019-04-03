@@ -10,6 +10,8 @@ let gameWidth = canvas.width;
 //Import Game//
 import Game from './game.js'
 
+import drawImage from './map.js'
+
 //Game Object//
 let game = new Game(gameWidth, gameHeight);
 
@@ -22,6 +24,7 @@ function gameLoop(timeStamp) {
     lastTime = timeStamp;
     ctx.clearRect(0, 0, gameWidth, gameHeight);
     ctx.imageSmoothingEnabled = false;
+    drawImage(ctx);
     game.update(deltaTime);
     game.draw(ctx);   
     window.requestAnimationFrame(gameLoop);

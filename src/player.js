@@ -9,7 +9,7 @@ export default class Lunk {
         this.height = this.clipHeight * game.upScale;
         this.position = {
             x: game.gameWidth / 2 - this.width / 2,
-            y: game.gameHeight - this.height
+            y: (game.gameHeight - this.height) - 75
         };
         this.maxSpeed = 5;
         this.speed = {
@@ -25,10 +25,6 @@ export default class Lunk {
         this.position.y += this.speed.y;
     };
     sword() {
-        let topOfSword = this.position.y;
-        let bottomOfSword = this.position.y + this.height;
-        let leftOfSword = this.position.x;
-        let rightofSword = this.position.x + this.width;
     
         if (this.xClip == 18 && this.yClip == 1) {
             this.xClip = 36;
@@ -38,6 +34,10 @@ export default class Lunk {
             this.height = this.clipHeight * this.game.upScale;
             this.width = this.clipWidth * this.game.upScale;
             this.position.x = this.position.x - 11 * this.game.upScale;
+            let topOfSword = this.position.y;
+            let bottomOfSword = this.position.y + this.height;
+            let leftOfSword = this.position.x;
+            let rightofSword = this.position.x + this.width;
             
 
             if (leftOfSword <= this.game.pig.position.x + this.game.pig.width &&
@@ -47,7 +47,6 @@ export default class Lunk {
                 this.game.pig.position.x = 600;
                 this.game.pig.position.y = 600;
                 this.game.pig.hearts--;
-                this.hearts++;
             };
         };
          
@@ -58,6 +57,10 @@ export default class Lunk {
             this.clipHeight = 16;
             this.height = this.clipHeight * this.game.upScale;
             this.width = this.clipWidth * this.game.upScale;
+            let topOfSword = this.position.y;
+            let bottomOfSword = this.position.y + this.height;
+            let leftOfSword = this.position.x;
+            let rightofSword = this.position.x + this.width;
 
             if (leftOfSword <= this.game.pig.position.x + this.game.pig.width &&
                 topOfSword <= this.game.pig.position.y + this.game.pig.height &&
@@ -66,7 +69,6 @@ export default class Lunk {
                 this.game.pig.position.x = 600;
                 this.game.pig.position.y = 600;
                 this.game.pig.hearts--;
-                this.hearts++;
             };
         };
         if (this.xClip == 35 && this.yClip == 1) {
@@ -77,6 +79,10 @@ export default class Lunk {
             this.height = this.clipHeight * this.game.upScale;
             this.width = this.clipWidth * this.game.upScale;
             this.position.y = this.position.y - 11 * this.game.upScale;
+            let topOfSword = this.position.y;
+            let bottomOfSword = this.position.y + this.height;
+            let leftOfSword = this.position.x;
+            let rightofSword = this.position.x + this.width;
 
             if (leftOfSword <= this.game.pig.position.x + this.game.pig.width &&
                 topOfSword <= this.game.pig.position.y + this.game.pig.height &&
@@ -85,7 +91,6 @@ export default class Lunk {
                 this.game.pig.position.x = 600;
                 this.game.pig.position.y = 600;
                 this.game.pig.hearts--;
-                this.hearts++;
             };
         };
         if (this.xClip == 1 && this.yClip == 1) {
@@ -95,6 +100,10 @@ export default class Lunk {
             this.clipWidth = 16;
             this.height = this.clipHeight * this.game.upScale;
             this.width = this.clipWidth * this.game.upScale;
+            let topOfSword = this.position.y;
+            let bottomOfSword = this.position.y + this.height;
+            let leftOfSword = this.position.x;
+            let rightofSword = this.position.x + this.width;
 
             if (leftOfSword <= this.game.pig.position.x + this.game.pig.width &&
                 topOfSword <= this.game.pig.position.y + this.game.pig.height &&
@@ -103,7 +112,6 @@ export default class Lunk {
                 this.game.pig.position.x = 600;
                 this.game.pig.position.y = 600;
                 this.game.pig.hearts--;
-                this.hearts++;
             };
         };
     };
@@ -111,6 +119,7 @@ export default class Lunk {
         if (this.xClip == 36 && this.yClip == 69) {
             this.xClip = 18;
             this.yClip = 1;
+            this.clipHeight = 16;
             this.clipWidth = 16;
             this.width = this.clipWidth * this.game.upScale;
             this.height = this.clipHeight * this.game.upScale;
@@ -118,13 +127,14 @@ export default class Lunk {
         } else if (this.xClip == 36 && this.yClip == 52) {
             this.xClip = 52;
             this.yClip = 1;
+            this.clipHeight = 16;
             this.clipWidth = 16;
             this.height = this.clipHeight * this.game.upScale;
             this.width = this.clipWidth * this.game.upScale;
         }else if (this.xClip == 18 && this.yClip == 52) {
             this.xClip = 35;
             this.yClip = 1;
-            this.clipHeight = 15;
+            this.clipHeight = 16;
             this.clipWidth = 16;
             this.height = this.clipHeight * this.game.upScale;
             this.width = this.clipWidth * this.game.upScale;
@@ -132,7 +142,8 @@ export default class Lunk {
         }else if (this.xClip == 1) {
             this.xClip = 1;
             this.yClip = 1;
-            this.clipHeight = 15;
+            this.clipHeight = 16;
+            this.clipWidth = 16;
             this.width = this.clipWidth * this.game.upScale;
             this.height = this.clipHeight * this.game.upScale;
         };
@@ -178,19 +189,23 @@ export default class Lunk {
     stopY() {
         this.speed.y = 0;
     };
+    heartCount(ctx) {
+        if(this.hearts >= 1) ctx.drawImage(this.img, 205, 1, 13, 13, 10, 0, 13*3.5, 13*3.5);
+        if(this.hearts >= 2) ctx.drawImage(this.img, 205, 1, 13, 13, 65, 0, 13*3.5, 13*3.5);
+        if(this.hearts >= 3) ctx.drawImage(this.img, 205, 1, 13, 13, 120, 0, 13*3.5, 13*3.5);
+
+    };
     boundry() {
-        if (this.position.x < 0) { this.position.x = 0 }
-        if (this.position.x > 800 - this.width) { this.position.x = 800 - this.width}
-        if (this.position.y < 0) { this.position.y = 0 }
-        if (this.position.y > 600 - this.height) { this.position.y = 600 - this.height}
+        if (this.position.x < (3.5 * 16)) { this.position.x = (3.5 * 16) }
+        if (this.position.x > this.game.gameWidth - this.width - (3.5 * 16)) { this.position.x = this.game.gameWidth - this.width - (3.5 * 16)}
+        if (this.position.y < (3.5 * 16) * 2) { this.position.y = (3.5 * 16) * 2 }
+        if (this.position.y > this.game.gameHeight - this.height - (3.5 * 16)) { this.position.y = this.game.gameHeight - this.height - (3.5 * 16)}
     };
     //Drawing Link//
     draw(ctx) {
         this.img.src = './img/link.png'
         ctx.drawImage(this.img, this.xClip, this.yClip, this.clipWidth, this.clipHeight, this.position.x, this.position.y,this.width, this.height);
-        let heartsLeft = ctx.drawImage(this.img, 205, 1, 13, 12, 10, 10, 13*3.5, 13*3.5);
-
-        
+        this.heartCount(ctx);        
     };
     //update Lunk//
     update(deltaTime){

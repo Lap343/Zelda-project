@@ -64,12 +64,14 @@ export default class Game {
             ctx.font = "30px Arial";
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
-            ctx.fillText("Press Spacebar/Start to Start", this.gameWidth / 2, this.gameHeight / 2);
+            ctx.fillText("Press Spacebar to Start", this.gameWidth / 2, this.gameHeight / 2);
         };
         if (this.gamestate === GAMESTATE.GAMEOVER) {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
             ctx.fillStyle = "rgba(0,0,0,1)";
             ctx.fill();
+
+            audio.pause();
 
             ctx.font = "30px Arial";
             ctx.fillStyle = "red";
@@ -80,7 +82,10 @@ export default class Game {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
             ctx.fillStyle = "rgba(255,255,255,1)";
             ctx.fill();
-            console.log('what???');
+
+            audio.pause();
+            audioTwo.loop = false;
+            play();
 
             ctx.font = "30px Arial";
             ctx.fillStyle = "yellow";
@@ -100,5 +105,15 @@ export default class Game {
                 audio.pause();
             };
         };
+    };
+};
+
+let looped = 0;
+
+function play() {
+    while (looped < 1) {
+        audioTwo.play();
+        looped++;
+        console.log('yess')
     };
 };

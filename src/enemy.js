@@ -18,7 +18,6 @@ export default class Enemy {
         };
         this.img = document.createElement('img'); 
         this.hearts = 3;
-        console.log(this.hearts);
     };
     walkSpeed() {
         this.position.x += this.speed.x;
@@ -53,21 +52,27 @@ export default class Enemy {
             topOfEnemy <= this.game.mainPlayer.position.y + this.game.mainPlayer.height &&
             rightOfEnemy >= this.game.mainPlayer.position.x &&
             bottomOfEnemy >= this.game.mainPlayer.position.y ) {
-            this.game.mainPlayer.position.x = 0;
-            this.game.mainPlayer.position.y = 0;
+            this.game.mainPlayer.position.x = 3.5 * 16;
+            this.game.mainPlayer.position.y = (3.5 * 16) * 2;
             this.game.mainPlayer.hearts--;
         };
     };
+    boundry() {
+        if (this.position.x < (3.5 * 16)) { this.position.x = (3.5 * 16) }
+        if (this.position.x > this.game.gameWidth - this.width - (3.5 * 16)) { this.position.x = this.game.gameWidth - this.width - (3.5 * 16)}
+        if (this.position.y < (3.5 * 16) * 2) { this.position.y = (3.5 * 16) * 2 }
+        if (this.position.y > this.game.gameHeight - this.height - (3.5 * 16)) { this.position.y = this.game.gameHeight - this.height - (3.5 * 16)}
+    }
+    heartCount(ctx) {
+        if(this.hearts >= 1) ctx.drawImage(this.img, 32, 0, 16, 16, this.game.gameWidth - 56, 0, 16*3.5, 16*3.5);
+        if(this.hearts >= 2) ctx.drawImage(this.img, 32, 0, 16, 16, this.game.gameWidth - 126, 0, 16*3.5, 16*3.5);
+        if(this.hearts >= 3) ctx.drawImage(this.img, 32, 0, 16, 16, this.game.gameWidth - 196, 0, 16*3.5, 16*3.5);
+    };
     draw(ctx) {
         this.img.src = './img/enemies.png'
-        ctx.drawImage(this.img, this.xClip, this.yClip, this.clipWidth, this.clipHeight, this.position.x, this.position.y,this.width, this.height)
+        ctx.drawImage(this.img, this.xClip, this.yClip, this.clipWidth, this.clipHeight, this.position.x, this.position.y,this.width, this.height);
+        this.heartCount(ctx);
     };
-    boundry() {
-        if (this.position.x < 0) { this.position.x = 0 }
-        if (this.position.x > 800 - this.width) { this.position.x = 800 - this.width}
-        if (this.position.y < 0) { this.position.y = 0 }
-        if (this.position.y > 600 - this.height) { this.position.y = 600 - this.height}
-    }
     update(deltaTime) {
         if(!deltaTime) return; 
         this.walkSpeed();
