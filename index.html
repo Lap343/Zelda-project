@@ -42,6 +42,7 @@
                 margin-left: 5vw;
             }
             #startButton {
+                display: block;
                 margin-left: 5vw;
             }
             #aButton {
@@ -55,7 +56,7 @@
     <h1 style="color: red; font-size: 40px;">Legend of Zelda: Ganon's end?</h1>
 
     <!-- The Game Screen -->
-    <canvas id="canvas" width="800px" height="600px"></canvas>
+    <canvas id="canvas" width="896px" height="616px"></canvas>
     
     <!-- The Brains behind it all -->
     <script type="module" src="src/index.js"></script>
@@ -80,6 +81,8 @@
             <button id="selectButton">Select</button>
         </div>
     </div>
-    
+    <script>
+        var audio = new Audio('../audio/overworld.mp3');
+    </script>
 </body>
 </html>

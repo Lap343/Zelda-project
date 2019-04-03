@@ -4,7 +4,7 @@ export default class Enemy {
         this.xClip = 0;
         this.yClip = 1;
         this.clipWidth = 16;
-        this.clipHeight = 16;
+        this.clipHeight = 14;
         this.width = this.clipWidth * game.upScale;
         this.height = this.clipHeight * game.upScale;
         this.position = {
@@ -17,10 +17,31 @@ export default class Enemy {
             y: 0
         };
         this.img = document.createElement('img'); 
+        this.hearts = 3;
+        console.log(this.hearts);
     };
     walkSpeed() {
         this.position.x += this.speed.x;
         this.position.y += this.speed.y;
+
+        function stepDirection(max, min) {
+            return Math.floor(Math.random() * (max -min)) + min;
+        };
+        switch (stepDirection(1, 5)) {
+            case 1:
+                this.speed.x = -this.maxSpeed * 0.75;
+                break;
+            case 2:
+                this.speed.x = +this.maxSpeed * 0.75;
+                break;
+            case 3:
+                this.speed.y = -this.maxSpeed * 0.75;
+                break;
+            case 4:
+                this.speed.y = +this.maxSpeed * 0.75;
+                break;
+        };
+
     };
     hurtBox() {
         let topOfEnemy = this.position.y;
@@ -34,7 +55,7 @@ export default class Enemy {
             bottomOfEnemy >= this.game.mainPlayer.position.y ) {
             this.game.mainPlayer.position.x = 0;
             this.game.mainPlayer.position.y = 0;
-            this.game.hearts--;
+            this.game.mainPlayer.hearts--;
         };
     };
     draw(ctx) {

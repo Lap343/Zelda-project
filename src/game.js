@@ -9,7 +9,8 @@ const GAMESTATE = {
     PAUSED: 0,
     RUNNING: 1,
     MENU: 2,
-    GAMEOVER: 3
+    GAMEOVER: 3,
+    GAMEWIN: 4
 }
 
 export default class Game {
@@ -20,12 +21,12 @@ export default class Game {
         this.gamestate = GAMESTATE.MENU;
         this.mainPlayer = new Lunk(this);
         this.gameObjects = [];
-        this.hearts = 3;
         new InputHandler(this.mainPlayer, this);
+        this.pig = new Enemy(this);
     };
     start() {
         if(this.gamestate !== GAMESTATE.MENU) return;
-        this.pig = new Enemy(this);
+        audio.play();
         this.gamestate = GAMESTATE.RUNNING;
 
         this.gameObjects = [
@@ -34,10 +35,12 @@ export default class Game {
         ];
     };
     update(deltaTime) {
-        if (this.hearts === 0) this.gamestate = GAMESTATE.GAMEOVER;
+        if (this.mainPlayer.hearts === 0) this.gamestate = GAMESTATE.GAMEOVER;
+        if (this.pig.hearts === 0) this.gamestate = GAMESTATE.GAMEWIN;
         if (this.gamestate === GAMESTATE.PAUSED ||    
             this.gamestate === GAMESTATE.MENU ||
-            this.gamestate === GAMESTATE.GAMEOVER
+            this.gamestate === GAMESTATE.GAMEOVER ||
+            this.gamestate === GAMESTATE.GAMEWIN
             ) return;
         this.gameObjects.forEach(objects => objects.update(deltaTime));
     };
@@ -73,13 +76,28 @@ export default class Game {
             ctx.textAlign = "center";
             ctx.fillText("Game Over Ganon Wins!", this.gameWidth / 2, this.gameHeight / 2);
         };
+        if (this.gamestate === GAMESTATE.GAMEWIN) {
+            ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+            ctx.fillStyle = "rgba(255,255,255,1)";
+            ctx.fill();
+            console.log('what???');
+
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "yellow";
+            ctx.textAlign = "center";
+            ctx.strokeStyle = "black";
+            ctx.strokeText("Congratulations Link Wins!", this.gameWidth / 2, this.gameHeight / 2);
+            ctx.fillText("Congratulations Link Wins!", this.gameWidth / 2, this.gameHeight / 2);
+        };
     };
     togglePause() {         
         if (this.gamestate !== GAMESTATE.MENU) {
+            audio.play();
             if (this.gamestate == GAMESTATE.PAUSED) {
                 this.gamestate = GAMESTATE.RUNNING;
             } else {
                 this.gamestate = GAMESTATE.PAUSED;
+                audio.pause();
             };
         };
     };

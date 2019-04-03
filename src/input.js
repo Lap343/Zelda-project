@@ -5,26 +5,28 @@ export default class InputHandler {
             switch (event.keyCode) {
                 //left//
                 case 37: 
-                    mainPlayer.lookLeft();
+                    if ( game.sword !== true ) mainPlayer.lookLeft();
                     break;
                 //right//
                 case 39: 
-                    mainPlayer.lookRight();
+                    if ( game.sword !== true ) mainPlayer.lookRight();
                     break;
                 //up//
                 case 38: 
-                    mainPlayer.lookUp();
+                    if ( game.sword !== true ) mainPlayer.lookUp();
                     break;
                 //down//
                 case 40: 
-                    mainPlayer.lookDown();
+                    if ( game.sword !== true ) mainPlayer.lookDown();
                     break;
-                pause//
+                //pause//
                 case 27:
                     game.togglePause();
                     break;
                 case 32:
                     game.start();
+                    game.mainPlayer.sword();
+                    game.mainPlayer.sword == true;
                     break;
             };
         });
@@ -46,52 +48,56 @@ export default class InputHandler {
                 case 40: 
                     if(mainPlayer.speed.y > 0) mainPlayer.stopY();
                     break;
+                case 32:
+                    game.mainPlayer.noSword();
+                    game.mainPlayer.sword == false;
+                    break;
             };
         });
-        document.getElementById('upButton').onmousedown = function() {
-            mainPlayer.lookUp();
-            console.log('wut');
-        }; 
-        document.getElementById('leftButton').onmousedown = function() {
-            mainPlayer.lookLeft();
-        };
-        document.getElementById('rightButton').onmousedown = function() {
-            mainPlayer.lookRight();
-        };
-        document.getElementById('downButton').onmousedown = function() {
-            mainPlayer.lookDown();
-        };
-        document.getElementById('selectButton').onmousedown = function() {
-            game.togglePause();
-        };
-        document.getElementById('startButton').onmousedown = function() {
-            game.start();
-        };
-        document.getElementById('aButton').onmousedown = function() {
+        // document.getElementById('upButton').onmousedown = function() {
+        //     mainPlayer.lookUp();
+        //     console.log('wut');
+        // }; 
+        // document.getElementById('leftButton').onmousedown = function() {
+        //     mainPlayer.lookLeft();
+        // };
+        // document.getElementById('rightButton').onmousedown = function() {
+        //     mainPlayer.lookRight();
+        // };
+        // document.getElementById('downButton').onmousedown = function() {
+        //     mainPlayer.lookDown();
+        // };
+        // document.getElementById('selectButton').onmousedown = function() {
+        //     game.togglePause();
+        // };
+        // document.getElementById('startButton').onmousedown = function() {
+        //     game.start();
+        // };
+        // document.getElementById('aButton').onmousedown = function() {
 
-        };
-        document.getElementById('bButton').onmousedown = function() {
+        // };
+        // document.getElementById('bButton').onmousedown = function() {
 
-        };
+        // };
 
-        document.getElementById('upButton').onmouseup = function() {
-            mainPlayer.stopY();
-        }; 
+        // document.getElementById('upButton').onmouseup = function() {
+        //     mainPlayer.stopY();
+        // }; 
 
-        document.getElementById('leftButton').onmouseup = function() {
-            mainPlayer.stopX();
-        };
-        document.getElementById('rightButton').onmouseup = function() {
-            mainPlayer.stopX();
-        };
-        document.getElementById('downButton').onmouseup = function() {
-            mainPlayer.stopY();
-        };
-        document.getElementById('aButton').onmouseup = function() {
+        // document.getElementById('leftButton').onmouseup = function() {
+        //     mainPlayer.stopX();
+        // };
+        // document.getElementById('rightButton').onmouseup = function() {
+        //     mainPlayer.stopX();
+        // };
+        // document.getElementById('downButton').onmouseup = function() {
+        //     mainPlayer.stopY();
+        // };
+        // document.getElementById('aButton').onmouseup = function() {
 
-        };
-        document.getElementById('bButton').onmouseup = function() {
+        // };
+        // document.getElementById('bButton').onmouseup = function() {
 
-        };
+        // };
     }; 
 };
